@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  amount      Float
+  category    String
+  description String?
+  type        String   // "INCOME" or "EXPENSE"
+  date        DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Goal {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  description String?
+  target      Float
+  current     Float    @default(0)
+  deadline    DateTime?
+  color       String?
+  status      String   @default("ACTIVE") // "ACTIVE", "COMPLETED", "CANCELLED"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Bill {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  amount      Float
+  dueDate     DateTime
+  category    String
+  isPaid      Boolean  @default(false)
+  status      String   @default("UPCOMING") // "UPCOMING", "DUE_TODAY", "OVERDUE"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Budget {
+  id          String   @id @default(cuid())
+  userId      String
+  category    String
+  limit       Float
+  spent       Float    @default(0)
+  period      String   @default("MONTHLY")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}

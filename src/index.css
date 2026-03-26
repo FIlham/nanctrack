@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-base-900: #0D0F14;
+  --color-base-800: #161920;
+  --color-base-700: #1E2128;
+  --color-base-600: #282C36;
+
+  --color-primary: #6C63FF;
+  --color-primary-light: #8B85FF;
+  --color-secondary: #00C9A7;
+  --color-tertiary: #FF6B6B;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.3);
+  --shadow-modal: 0 8px 48px rgba(0,0,0,0.5);
+  --shadow-glow-p: 0 0 20px rgba(108,99,255,0.25);
+  --shadow-glow-s: 0 0 20px rgba(0,201,167,0.2);
+}
+
+@layer base {
+  body {
+    @apply bg-base-900 text-white font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold tracking-tight;
+  }
+}
+
+/* Custom animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
